@@ -14,6 +14,8 @@ class TokenType(Enum):
     RPAREN = auto()
     ASSIGN = auto()
     COMMA = auto()
+    BOOLEAN = auto()
+    IMPORT = auto()
     IF = auto()
     THEN = auto()
     ELSE = auto()
