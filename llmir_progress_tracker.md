@@ -36,10 +36,12 @@
    - Lexer, parser, IR builder
    - Borrow checker, scheduler, backend
 
-9. **Interpreter Implementation** 🚧
-   - Work started module-by-module
-   - Lexer/parser in progress
+9. **Interpreter Implementation** ✅
+   - Lexer/parser expanded with arrays, if/else, strings
+   - Borrow checker and scheduler stubs added
+   - Module loader and runtime skeletons
+   - Basic interpreter evaluating expressions
 
-10. **Compiler Stub Outline** 🕓
-   - Next step: emit to LLVM IR for basic ops
+10. **Compiler Stub Outline** ✅
+   - Emits placeholder LLVM IR for core expressions
 
