@@ -8,6 +8,7 @@ from llmir.parser import Parser
 from llmir.ast import ArrayExpr, Assignment, BinaryOp, Boolean, IfExpr, Number
 
 
+
 class TestParser(unittest.TestCase):
     def test_simple_expression(self):
         parser = Parser("1+2")
@@ -33,6 +34,7 @@ class TestParser(unittest.TestCase):
         self.assertEqual(len(expr.then_branch.elements), 2)
         self.assertIsInstance(expr.else_branch, ArrayExpr)
         self.assertEqual(len(expr.else_branch.elements), 1)
+
 
 
 if __name__ == "__main__":

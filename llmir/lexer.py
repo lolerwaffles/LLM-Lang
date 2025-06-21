@@ -31,6 +31,7 @@ class Lexer:
             if ch.isalpha() or ch == '_' or ch == '$':
                 start = i
                 while i < length and (self.source[i].isalnum() or self.source[i] in '_$'):
+
                     i += 1
                 ident = self.source[start:i]
                 if ident == 'if':
@@ -43,6 +44,7 @@ class Lexer:
                     tokens.append(Token(TokenType.BOOLEAN, ident, start))
                 elif ident == '$import':
                     tokens.append(Token(TokenType.IMPORT, ident, start))
+
                 else:
                     tokens.append(Token(TokenType.IDENT, ident, start))
                 continue
@@ -88,6 +90,7 @@ class Lexer:
                 value = self.source[start + 1:i]
                 i += 1
                 tokens.append(Token(TokenType.STRING, value, start))
+
                 continue
             # Unknown character
             i += 1

@@ -16,6 +16,7 @@ class TokenType(Enum):
     COMMA = auto()
     BOOLEAN = auto()
     IMPORT = auto()
+
     IF = auto()
     THEN = auto()
     ELSE = auto()

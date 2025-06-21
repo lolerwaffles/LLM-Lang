@@ -29,5 +29,6 @@ class TestLexer(unittest.TestCase):
         self.assertEqual(tokens[2].value, "false")
 
 
+
 if __name__ == "__main__":
     unittest.main()

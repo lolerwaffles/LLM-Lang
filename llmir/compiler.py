@@ -18,6 +18,7 @@ from .ast import (
 )
 
 
+
 class Compiler:
     def compile(self, exprs: List[Expr]) -> str:
         lines = ["; ModuleID = 'llmir'"]
@@ -33,6 +34,7 @@ class Compiler:
             return f"%{idx} = add i1 0, {val}"
         if isinstance(expr, StringLiteral):
             return f"; string \"{expr.value}\""
+
         if isinstance(expr, Identifier):
             return f"; identifier {expr.name}"
         if isinstance(expr, BinaryOp):
@@ -55,4 +57,5 @@ class Compiler:
             then_ir = self.emit_expr(expr.then_branch, idx + 1)
             else_ir = self.emit_expr(expr.else_branch, idx + 2)
             return "\n".join([cond, then_ir, else_ir, "; if expr"])
+
         return f"; unknown expr"

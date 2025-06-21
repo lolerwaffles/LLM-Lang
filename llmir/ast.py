@@ -38,7 +38,6 @@ class Call(Expr):
     func: Identifier
     args: List[Expr]
 
-
 @dataclass
 class ArrayExpr(Expr):
     elements: List[Expr]

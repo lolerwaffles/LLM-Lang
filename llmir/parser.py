@@ -14,6 +14,7 @@ from .ast import (
     Number,
     StringLiteral,
 )
+
 from .lexer import Lexer
 from .token import Token, TokenType
 
@@ -46,6 +47,7 @@ class Parser:
         tok = self.consume()
         assert tok.type == TokenType.BOOLEAN
         return Boolean(tok.value == "true")
+
 
     def parse_identifier(self) -> Identifier:
         tok = self.consume()
@@ -80,6 +82,7 @@ class Parser:
         self.consume()  # else
         else_branch = self.parse_expression()
         return IfExpr(cond, then_branch, else_branch)
+
 
     def parse_primary(self) -> Expr:
         tok = self.peek()
@@ -116,6 +119,7 @@ class Parser:
             right = self.parse_primary()
             expr = BinaryOp(expr, op, right)
         return expr
+
 
     def parse(self) -> List[Expr]:
         exprs: List[Expr] = []
