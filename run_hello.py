@@ -1,8 +1,14 @@
-from llmir.parser import Parser
+"""Simple helper to execute the ``hello.llang`` example."""
+
 from llmir.interpreter import Interpreter
 
-code = 'print("Hello, world!")'
-parser = Parser(code)
-exprs = parser.parse()
-Interpreter().eval(exprs)
+
+def main() -> None:
+    with open("hello.llang", "r", encoding="utf-8") as f:
+        source = f.read()
+    Interpreter().eval(source)
+
+
+if __name__ == "__main__":
+    main()
 
