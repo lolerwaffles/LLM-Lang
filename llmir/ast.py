@@ -28,3 +28,8 @@ class Call(Expr):
     func: Identifier
     args: List[Expr]
 
+
+@dataclass
+class StringLiteral(Expr):
+    value: str
+
