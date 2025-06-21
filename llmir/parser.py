@@ -93,6 +93,12 @@ class Parser:
             return self.parse_number()
         if tok.type == TokenType.STRING:
             return self.parse_string()
+        if tok.type == TokenType.BOOLEAN:
+            return self.parse_boolean()
+        if tok.type == TokenType.LBRACKET:
+            return self.parse_array()
+        if tok.type == TokenType.IF:
+            return self.parse_if_expr()
         if tok.type == TokenType.IDENT:
             ident = self.parse_identifier()
             if self.peek().type == TokenType.LPAREN:
