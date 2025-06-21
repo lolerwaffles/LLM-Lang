@@ -60,6 +60,7 @@ class Interpreter:
             value = self.eval_expr(expr.value)
             self.env[expr.target.name] = value
             return value
+
         if isinstance(expr, BinaryOp):
             left = self.eval_expr(expr.left)
             right = self.eval_expr(expr.right)

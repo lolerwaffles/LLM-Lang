@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import List
 
+
 from .ast import (
     ArrayExpr,
     Assignment,
@@ -54,6 +55,7 @@ class Parser:
         assert tok.type == TokenType.IDENT
         return Identifier(tok.value)
 
+
     def parse_array(self) -> ArrayExpr:
         self.consume()  # [
         elements: List[Expr] = []
@@ -84,28 +86,38 @@ class Parser:
         return IfExpr(cond, then_branch, else_branch)
 
 
+
     def parse_primary(self) -> Expr:
         tok = self.peek()
         if tok.type == TokenType.NUMBER:
             return self.parse_number()
         if tok.type == TokenType.STRING:
             return self.parse_string()
-        if tok.type == TokenType.BOOLEAN:
-            return self.parse_boolean()
         if tok.type == TokenType.IDENT:
             ident = self.parse_identifier()
             if self.peek().type == TokenType.LPAREN:
-                return self.parse_call(ident)
+                self.consume()  # (
+                args: List[Expr] = []
+                if self.peek().type != TokenType.RPAREN:
+                    while True:
+                        args.append(self.parse_expression())
+                        if self.peek().type == TokenType.COMMA:
+                            self.consume()
+                        else:
+                            break
+                if self.peek().type != TokenType.RPAREN:
+                    raise SyntaxError("Expected ')'")
+                self.consume()
+                return Call(ident, args)
             return ident
-        if tok.type == TokenType.LBRACKET:
-            return self.parse_array()
         if tok.type == TokenType.LPAREN:
             self.consume()
             expr = self.parse_expression()
-            self.consume()  # RPAREN
+            if self.peek().type != TokenType.RPAREN:
+                raise SyntaxError("Expected ')'")
+            self.consume()
             return expr
-        if tok.type == TokenType.IF:
-            return self.parse_if_expr()
+
         raise SyntaxError(f"Unexpected token {tok}")
 
     def parse_expression(self) -> Expr:

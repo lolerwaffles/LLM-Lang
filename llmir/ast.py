@@ -38,6 +38,11 @@ class Call(Expr):
     func: Identifier
     args: List[Expr]
 
+
+@dataclass
+class StringLiteral(Expr):
+    value: str
+
 @dataclass
 class ArrayExpr(Expr):
     elements: List[Expr]
