@@ -21,13 +21,17 @@ class Lexer:
                 continue
             if ch.isdigit():
                 start = i
-                while i < length and self.source[i].isdigit():
+                has_dot = False
+                while i < length and (self.source[i].isdigit() or (self.source[i] == '.' and not has_dot)):
+                    if self.source[i] == '.':
+                        has_dot = True
                     i += 1
                 tokens.append(Token(TokenType.NUMBER, self.source[start:i], start))
                 continue
-            if ch.isalpha() or ch == '_':
+            if ch.isalpha() or ch == '_' or ch == '$':
                 start = i
-                while i < length and (self.source[i].isalnum() or self.source[i] == '_'):
+                while i < length and (self.source[i].isalnum() or self.source[i] in '_$'):
+
                     i += 1
                 ident = self.source[start:i]
                 if ident == 'if':
@@ -36,6 +40,11 @@ class Lexer:
                     tokens.append(Token(TokenType.THEN, ident, start))
                 elif ident == 'else':
                     tokens.append(Token(TokenType.ELSE, ident, start))
+                elif ident == 'true' or ident == 'false':
+                    tokens.append(Token(TokenType.BOOLEAN, ident, start))
+                elif ident == '$import':
+                    tokens.append(Token(TokenType.IMPORT, ident, start))
+
                 else:
                     tokens.append(Token(TokenType.IDENT, ident, start))
                 continue
@@ -78,8 +87,10 @@ class Lexer:
                 i += 1
                 while i < length and self.source[i] != '"':
                     i += 1
+                value = self.source[start + 1:i]
                 i += 1
-                tokens.append(Token(TokenType.STRING, self.source[start:i], start))
+                tokens.append(Token(TokenType.STRING, value, start))
+
                 continue
             # Unknown character
             i += 1
