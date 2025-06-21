@@ -83,3 +83,17 @@ Modules can be loaded via `$import` (lexer recognizes this token). The compiler 
 
 Unit tests reside under `tests/` and can be executed with `pytest -q`.
 
+## Example Programs
+
+Several small demo programs are provided in the `examples/` directory. They can
+be executed using the interpreter CLI:
+
+```bash
+python -m llmir examples/arithmetic.llang
+python -m llmir examples/array_sum.llang
+python -m llmir examples/conditional.llang
+```
+
+These showcase assignments, array handling, arithmetic, and conditional
+expressions in LLMLang.
+
