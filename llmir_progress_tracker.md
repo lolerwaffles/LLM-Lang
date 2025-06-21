@@ -37,9 +37,12 @@
    - Borrow checker, scheduler, backend
 
 9. **Interpreter Implementation** ✅
-   - Basic lexer and parser implemented in Python
-   - AST definitions provided
+   - Lexer/parser expanded with arrays, if/else, strings
+   - Borrow checker and scheduler stubs added
+   - Module loader and runtime skeletons
+   - Basic interpreter evaluating expressions
 
-10. **Compiler Stub Outline** 🚧
-   - Skeleton compiler emits placeholder LLVM IR
+10. **Compiler Stub Outline** ✅
+   - Emits placeholder LLVM IR for core expressions
+
 

@@ -18,6 +18,17 @@ class TestLexer(unittest.TestCase):
         self.assertEqual(tokens[1].value, "123")
         self.assertEqual(tokens[-1].type, TokenType.EOF)
 
+    def test_strings_and_booleans(self):
+        lex = Lexer('"hi" true false')
+        tokens = lex.tokenize()
+        self.assertEqual(tokens[0].type, TokenType.STRING)
+        self.assertEqual(tokens[0].value, "hi")
+        self.assertEqual(tokens[1].type, TokenType.BOOLEAN)
+        self.assertEqual(tokens[1].value, "true")
+        self.assertEqual(tokens[2].type, TokenType.BOOLEAN)
+        self.assertEqual(tokens[2].value, "false")
+
+
 
 if __name__ == "__main__":
     unittest.main()
